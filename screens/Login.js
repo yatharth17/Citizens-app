@@ -5,11 +5,11 @@ import {
   KeyboardAvoidingView,
   StyleSheet
 } from "react-native";
-import * as firebase from "firebase";
-import { Button, Block, Input, View, Text } from "../components";
+
+import { Button, Block, Input, Text } from "../components";
 import { theme } from "../constants";
 
-const VALID_EMAIL = "User_17@gmail.com";
+const VALID_EMAIL = "contact@react-ui-kit.com";
 const VALID_PASSWORD = "subscribe";
 
 export default class Login extends Component {
@@ -19,19 +19,6 @@ export default class Login extends Component {
     errors: [],
     loading: false
   };
-  // componentDidMount() {
-  //   const firebaseConfig = {
-  //     apiKey: "AIzaSyDZ4DQI6WVmjoSI4K3lR1cgCgGahPt1yYM",
-  //     authDomain: "smartcitizens-1f0c6.firebaseapp.com",
-  //     databaseURL: "https://smartcitizens-1f0c6.firebaseio.com",
-  //     projectId: "smartcitizens-1f0c6",
-  //     storageBucket: "",
-  //     messagingSenderId: "172043669685",
-  //     appId: "1:172043669685:web:449124a986a49e4e552efc"
-  //   };
-
-  //   firebase.initializeApp(firebaseConfig);
-  // }
 
   handleLogin() {
     const { navigation } = this.props;
@@ -48,61 +35,12 @@ export default class Login extends Component {
     if (password !== VALID_PASSWORD) {
       errors.push("password");
     }
-    var data = {
-      email: "me.mohakchugh@gmail.com",
-      password: "test"
-    };
-    // try {
-    //   var main = async () => {
-    //     let response = await fetch(
-    //       "http://ec2-13-235-67-142.ap-south-1.compute.amazonaws.com:8080/input/auth/login",
-    //       {
-    //         method: "POST",
-    //         body: JSON.stringify(data)
-    //       }
-    //     );
-    //     if (response != "Authentication Failed !") {
-    //       alert("authenticated successfully!!!");
-    //     }
-    //   };
-    //   main();
-    // } catch (errors) {
-    //   alert(errors);
-    // }
 
     this.setState({ errors, loading: false });
 
     if (!errors.length) {
       navigation.navigate("Browse");
     }
-    fetch("http://13.235.67.142/input/login/auth", {
-      method: "POST",
-      body: JSON.stringify({
-        emailID: "foo@XYZ.COM",
-        password: "bar"
-      }),
-      headers: {
-        "Content-type": "application/json; charset=UTF-8"
-      }
-    })
-      .then(response => response.json())
-      .then(json => console.log("checking" + json));
-  }
-
-  _handlelogin() {
-    firebase
-      .auth()
-      .signInWithEmailAndPassword(this.state.email, this.state.password)
-
-      .catch(function(error) {
-        // Handle Errors here.
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        <View>
-          <Text>{errorMessage}</Text>
-        </View>;
-      });
-    navigation.navigate("Login");
   }
 
   render() {
@@ -124,7 +62,20 @@ export default class Login extends Component {
               defaultValue={this.state.email}
               onChangeText={text => this.setState({ email: text })}
             />
-
+            <Input
+              label="Name"
+              error={hasErrors("Name")}
+              style={[styles.input, hasErrors("email")]}
+              defaultValue={this.state.email}
+              onChangeText={text => this.setState({ email: text })}
+            />
+            <Input
+              label="Username"
+              error={hasErrors("email")}
+              style={[styles.input, hasErrors("email")]}
+              defaultValue={this.state.email}
+              onChangeText={text => this.setState({ email: text })}
+            />
             <Input
               secure
               label="Password"

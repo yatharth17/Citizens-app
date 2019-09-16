@@ -19,6 +19,14 @@ import { Dropdown } from "react-native-material-dropdown";
 
 export default class ImagePickerExample extends React.Component {
   state = {
+    emailID: "",
+    password: "",
+    firstName: "",
+    lastName: "",
+    areaID: "",
+    phone: "",
+    stateID: "",
+    cityID: "",
     value: "",
     onChangeText: "",
     category: [
@@ -58,7 +66,7 @@ export default class ImagePickerExample extends React.Component {
               height: 40,
               borderColor: "gray",
               borderWidth: 1,
-              padding: 100
+              padding: 70
             }}
             onChangeText={text => onChangeText(text)}
             value={this.state.value}
@@ -67,6 +75,49 @@ export default class ImagePickerExample extends React.Component {
             title="Submit"
             onPress={() => this.setState({ image: null })}
           />
+          <Block middle>
+            <Input
+              email
+              label="Email"
+              defaultValue={this.state.emailID}
+              onChangeText={text => this.setState({ emailID: text })}
+            />
+            <Input
+              label="password"
+              defaultValue={this.state.password}
+              onChangeText={text => this.setState({ password: text })}
+            />
+            <Input
+              label="firstName"
+              defaultValue={this.state.firstName}
+              onChangeText={text => this.setState({ firstName: text })}
+            />
+            <Input
+              label="lastName"
+              defaultValue={this.state.lastName}
+              onChangeText={text => this.setState({ lastName: text })}
+            />
+            <Input
+              label="areaID"
+              defaultValue={this.state.areaID}
+              onChangeText={text => this.setState({ areaID: text })}
+            />
+            <Input
+              label="phone"
+              defaultValue={this.state.phone}
+              onChangeText={text => this.setState({ phone: text })}
+            />
+            <Input
+              label="stateID"
+              defaultValue={this.state.stateID}
+              onChangeText={text => this.setState({ stateID: text })}
+            />
+            <Input
+              label="cityID"
+              defaultValue={this.state.cityID}
+              onChangeText={text => this.setState({ cityID: text })}
+            />
+          </Block>
         </View>
       </ScrollView>
     );
